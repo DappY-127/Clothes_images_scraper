@@ -15,6 +15,17 @@ class ClothingItem:
         self.image_names = []
         self.directory = None
 
+    def prepare_link(self, links):
+        source_links = []
+        for link in links:
+            split_link = link.split('/')
+            remove_part = [split_link[6], split_link[7], split_link[8]] # look at correct indexes
+            for part in remove_part:
+                split_link.remove(part)
+            source_link = '/'.join(split_link)
+            source_links.append(source_link)
+        return source_links     
+
     def extract_data(self):
         driver = webdriver.Chrome(executable_path='drivers\chromedriver.exe')
         driver.maximize_window()
@@ -47,9 +58,13 @@ class ClothingItem:
             counter += 1    
 
 if __name__ == '__main__':
-    url = 'plug'    
-    item = ClothingItem(url)   
-    item.extract_data()
-    item.create_directory()
-    item.download_images()
+    urls = input("Enter the URLs separated by commas: ").split(",")
+    for url in urls:
+        item = ClothingItem(url.strip())
+        item.extract_data()
+        item.create_directory()
+        item.download_images()
+
+
+
  
