@@ -45,14 +45,6 @@ LOCATORS = {
     'mohito': MohitoProductPageLocators,
 }
 
-site_folder_mapping = {
-    'reserved': 'Reserved',
-    'house': 'House',
-    'sinsay': 'Sinsay',
-    'cropp': 'Cropp',
-    'mohito': 'Mohito'
-}
-
 def prepare_link(links):
     source_links = []
     for link in links:
@@ -126,8 +118,21 @@ class ClothingItem:
 
     def create_directory(self):
         path = os.getcwd()
-        self.directory = os.path.join(path, f'Reserved\{self.name}({self.id})')
-        os.mkdir(self.directory)
+        domain = urlparse(self.url).hostname
+        if 'reserved.com' in domain:
+            folder_name = 'Reserved'
+        elif 'house.com' in domain:
+            folder_name = 'House'
+        elif 'sinsay.com' in domain:
+            folder_name = 'Sinsay'
+        elif 'cropp.com' in domain:
+            folder_name = 'Cropp'
+        elif 'mohito.com' in domain:
+            folder_name = 'Mohito'
+        else:
+            raise ValueError(f"No folder found for domain '{domain}'")
+        self.directory = os.path.join(path, f'images/{folder_name}/{self.name}({self.id})')
+        os.makedirs(self.directory)
 
     def download_images(self):
         download_images(self.directory, self.image_links, self.image_names)
