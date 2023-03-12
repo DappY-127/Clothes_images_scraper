@@ -37,4 +37,18 @@ class MohitoProductPageLocators():
     clothes_id_locator = '[data-testid="sku"]'
     clothes_pic_locator = '.thumbnailstyled__Thumbnail-sc-12kuo2j-0 img' 
 
+LOCATORS = {
+    'reserved': ReservedProductPageLocators,
+    'house': HouseProductPageLocators,
+    'sinsay': SinsayProductPageLocators,
+    'cropp': CroppProductPageLocators,
+    'mohito': MohitoProductPageLocators,
+}
 
+site_folder_mapping = {
+    'reserved': 'Reserved',
+    'house': 'House',
+    'sinsay': 'Sinsay',
+    'cropp': 'Cropp',
+    'mohito': 'Mohito'
+}
