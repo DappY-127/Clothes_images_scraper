@@ -83,7 +83,7 @@ class ClothingItem:
         domain = urlparse(self.url).hostname
         if 'reserved.com' in domain:
             locator_class = ReservedProductPageLocators
-        elif 'house.com' in domain:
+        elif 'housebrand.com' in domain:
             locator_class = HouseProductPageLocators
         elif 'sinsay.com' in domain:
             locator_class = SinsayProductPageLocators
@@ -121,7 +121,7 @@ class ClothingItem:
         domain = urlparse(self.url).hostname
         if 'reserved.com' in domain:
             folder_name = 'Reserved'
-        elif 'house.com' in domain:
+        elif 'housebrand.com' in domain:
             folder_name = 'House'
         elif 'sinsay.com' in domain:
             folder_name = 'Sinsay'
