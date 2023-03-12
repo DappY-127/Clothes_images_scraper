@@ -52,3 +52,21 @@ site_folder_mapping = {
     'cropp': 'Cropp',
     'mohito': 'Mohito'
 }
+
+def prepare_link(links):
+    source_links = []
+    for link in links:
+        split_link = link.split('/')
+        remove_part = [split_link[6], split_link[7], split_link[8]] # look at correct indexes
+        for part in remove_part:
+            split_link.remove(part)
+        source_link = '/'.join(split_link)
+        source_links.append(source_link)
+    return source_links 
+
+def download_images(directory, image_links, image_names):
+    counter = 0
+    for link in image_links:
+        save_as = os.path.join(directory, f'{image_names[counter]}.jpg')
+        wget.download(link, save_as)
+        counter += 1
